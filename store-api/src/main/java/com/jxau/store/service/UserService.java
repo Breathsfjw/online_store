@@ -1,8 +1,8 @@
-package com.jxau.store.fjw.user.service;
+package com.jxau.store.service;
 
 
-import com.jxau.store.fjw.user.bean.UmsMeber;
-import com.jxau.store.fjw.user.bean.UmsMemberReceiveAddress;
+import com.jxau.store.beans.UmsMeber;
+import com.jxau.store.beans.UmsMemberReceiveAddress;
 
 import java.util.List;
 

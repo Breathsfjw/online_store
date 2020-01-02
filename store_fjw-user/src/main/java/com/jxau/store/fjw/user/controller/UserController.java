@@ -1,8 +1,8 @@
 package com.jxau.store.fjw.user.controller;
 
-import com.jxau.store.fjw.user.bean.UmsMeber;
-import com.jxau.store.fjw.user.bean.UmsMemberReceiveAddress;
-import com.jxau.store.fjw.user.service.UserService;
+import com.jxau.store.beans.UmsMeber;
+import com.jxau.store.beans.UmsMemberReceiveAddress;
+import com.jxau.store.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

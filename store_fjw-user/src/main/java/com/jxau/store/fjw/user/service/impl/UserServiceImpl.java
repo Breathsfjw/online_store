@@ -1,10 +1,11 @@
 package com.jxau.store.fjw.user.service.impl;
 
-import com.jxau.store.fjw.user.bean.UmsMeber;
-import com.jxau.store.fjw.user.bean.UmsMemberReceiveAddress;
+import com.jxau.store.beans.UmsMeber;
+import com.jxau.store.beans.UmsMeber;
+import com.jxau.store.beans.UmsMemberReceiveAddress;
 import com.jxau.store.fjw.user.mapper.UmsMemberReceiveAddressMapper;
 import com.jxau.store.fjw.user.mapper.UserMapper;
-import com.jxau.store.fjw.user.service.UserService;
+import com.jxau.store.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;

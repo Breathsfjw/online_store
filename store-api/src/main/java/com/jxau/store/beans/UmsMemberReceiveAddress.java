@@ -1,4 +1,4 @@
-package com.jxau.store.fjw.user.bean;
+package com.jxau.store.beans;
 
 import javax.persistence.Id;
 import java.io.Serializable;

@@ -1,7 +1,7 @@
 package com.jxau.store.fjw.user.mapper;
 
 
-import com.jxau.store.fjw.user.bean.UmsMeber;
+import com.jxau.store.beans.UmsMeber;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
