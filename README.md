@@ -2,6 +2,7 @@
  
  #store_fjw-user用户服务端口8080
      127.0.0.1  com.jxau.store_fjw.user
-     user-web服务端端口号8080
-     user-service服务端端口号8070
-     
+     store-user-web服务端端口号8080
+     store-user-service服务端端口号8070
+     store-manage-web服务端口8081
+     store-manage-service服务端口7071
