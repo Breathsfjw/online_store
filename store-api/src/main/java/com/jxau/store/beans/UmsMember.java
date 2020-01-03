@@ -1,9 +1,10 @@
 package com.jxau.store.beans;
 
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
-public class UmsMeber {
+public class UmsMember implements Serializable {
     @Id
     private String id;
     private String         memberLevelId;
