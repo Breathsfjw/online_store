@@ -11,6 +11,7 @@
     <groupId>com.jxau.store</groupId>
     <artifactId>store-user-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>store-user-service</name>
     <description>Demo project for Spring Boot</description>
 

@@ -1,9 +1,9 @@
 package com.jxau.store.user.controller;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.jxau.store.beans.UmsMember;
 import com.jxau.store.beans.UmsMemberReceiveAddress;
 import com.jxau.store.service.UserService;
+import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

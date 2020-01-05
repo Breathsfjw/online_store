@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.jxau.store</groupId>
-            <artifactId>store-service-util</artifactId>
+            <artifactId>store-web-util</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
