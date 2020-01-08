@@ -1,14 +1,14 @@
 package com.jxau.store.manage.contorller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.jxau.store.beans.*;
+import com.jxau.store.beans.PmsProductImage;
+import com.jxau.store.beans.PmsProductInfo;
+import com.jxau.store.beans.PmsProductSaleAttr;
+import com.jxau.store.manage.utils.PmsUploadUtil;
 import com.jxau.store.service.SpuService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,30 +17,53 @@ import java.util.List;
 public class SpuControlle {
     @Reference
     SpuService spuService;
+
     @RequestMapping("spuList")
     @ResponseBody
-    public List<PmsProductInfo> spuList(String catalog3Id){
+    public List<PmsProductInfo> spuList(String catalog3Id) {
 
         List<PmsProductInfo> pmsProductInfos = spuService.spuList(catalog3Id);
         return pmsProductInfos;
     }
+
     @RequestMapping("saveSpuInfo")
     @ResponseBody
-    public String saveSpuInfo(@RequestBody PmsSkuInfo pmsSkuInfo){
+    public String saveSpuInfo(@RequestBody PmsProductInfo pmsProductInfo) {
 
-        // 将spuId封装给productId
-        pmsSkuInfo.setProductId(pmsSkuInfo.getSpuId());
-
-        // 处理默认图片
-        String skuDefaultImg = pmsSkuInfo.getSkuDefaultImg();
-        if(StringUtils.isBlank(skuDefaultImg)){
-            pmsSkuInfo.setSkuDefaultImg(pmsSkuInfo.getSkuImageList().get(0).getImgUrl());
-        }
-
-
-//        skuService.saveSkuInfo(pmsSkuInfo);
+        spuService.saveSpuInfo(pmsProductInfo);
 
 
         return "success";
+    }
+
+    @RequestMapping("fileUpload")
+    @ResponseBody
+    public String fileUpload(@RequestParam("file") MultipartFile multipartFile) {
+
+        // 将图片或者音视频上传到分布式的文件存储系统
+        // 将图片的存储路径返回给页面
+        MultipartFile multipartFile1 = multipartFile;
+        String imgUrl = PmsUploadUtil.uploadImage(multipartFile1);
+        //spuService.fileUpload(imgUrl);
+
+
+        return imgUrl;
+    }
+
+    @RequestMapping("spuSaleAttrList")
+    @ResponseBody
+    public List<PmsProductSaleAttr> spuSaleAttrList(String spuId) {
+
+        List<PmsProductSaleAttr> pmsProductSaleAttrList = spuService.spuSaleAttrList(spuId);
+
+
+        return pmsProductSaleAttrList;
+    }
+    @RequestMapping("spuImageList")
+    @ResponseBody
+    public List<PmsProductImage> spuImageList(String spuId){
+
+        List<PmsProductImage> pmsProductImages = spuService.spuImageList(spuId);
+        return pmsProductImages;
     }
 }
