@@ -16,6 +16,12 @@ import java.util.List;
 
 @Service
 public class SkuServiceImpl implements SkuService {
+    /**
+     * @author fjw
+     * 商品发布后台管理系统
+     * sku：商品库存单元，商品库存单元管理
+     * 保存商品库存单元信息：saveSkuInfo
+     */
 
     @Autowired
     PmsSkuInfoMapper pmsSkuInfoMapper;

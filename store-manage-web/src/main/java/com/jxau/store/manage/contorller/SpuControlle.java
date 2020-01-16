@@ -15,6 +15,12 @@ import java.util.List;
 @CrossOrigin
 @Controller
 public class SpuControlle {
+    /***
+     * @author fjw
+     * 商品发布后台管理系统
+     *spu：标准商品单元，标准商品管理单元
+     * fastdfs图片存储服务器，存储ip：192.168.174.140
+     */
     @Reference
     SpuService spuService;
 
@@ -59,9 +65,10 @@ public class SpuControlle {
 
         return pmsProductSaleAttrList;
     }
+
     @RequestMapping("spuImageList")
     @ResponseBody
-    public List<PmsProductImage> spuImageList(String spuId){
+    public List<PmsProductImage> spuImageList(String spuId) {
 
         List<PmsProductImage> pmsProductImages = spuService.spuImageList(spuId);
         return pmsProductImages;

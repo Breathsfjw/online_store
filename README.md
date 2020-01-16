@@ -5,4 +5,4 @@
      store-user-web服务端端口号8080
      store-user-service服务端端口号8070
      store-manage-web服务端口8081
-     store-manage-service服务端口7071
+     store-manage-service服务端口8071

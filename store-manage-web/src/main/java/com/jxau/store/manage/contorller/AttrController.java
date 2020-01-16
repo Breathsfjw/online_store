@@ -17,6 +17,11 @@ import java.util.List;
 @Controller
 @CrossOrigin
 public class AttrController {
+    /**
+     * @author fjw
+     * 商品发布后台管理系统
+     *平台属性三级分类的属性信息，管理平台属性值
+     */
     @Reference
     AttrService attrService;
     @RequestMapping("attrInfoList")

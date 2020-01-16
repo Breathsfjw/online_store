@@ -16,6 +16,12 @@ import java.util.List;
 
 @Service
 public class AttrServiceImpl implements AttrService {
+    /**
+     * @author fjw
+     * 商品发布后台管理系统
+     *平台属性三级分类的属性信息，管理平台属性值
+     * 查询平台属性信息：attrInfoList(string value)value：三级平台属性对应Id
+     */
     @Autowired
     PmsBaseAttrInfoMapper pmsBaseAttrInfoMapper;
     @Autowired

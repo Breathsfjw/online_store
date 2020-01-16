@@ -16,6 +16,14 @@ import java.util.List;
 
 @Service
 public class SpuServiceImpl implements SpuService {
+    /***
+     * @author fjw
+     * 商品发布后台管理系统
+     *spu：标准商品单元，标准商品管理单元
+     * 查询标准商品单元信息spuList(String catalog3Id)
+     * 保存标准商品单元信息saveSpuInfo(PmsProductInfo pmsProductInfo)
+     * 查询标准商品单元图片信息spuImageList(String spuId)
+     */
     @Autowired
     PmsProductSaleAttrMapper pmsProductSaleAttrMapper;
     @Autowired

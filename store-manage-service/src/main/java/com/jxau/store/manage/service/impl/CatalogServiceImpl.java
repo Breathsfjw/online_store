@@ -13,6 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 @Service
 public class CatalogServiceImpl implements CatalogService {
+    /**
+     * @author fjw
+     * 商品发布后台管理系统
+     *平台属性三级分类的查询
+     * 查询一级平台属性分类：getCatalog1()
+     * 查询二级平台属性分类：getCatalog2()
+     * 查询三级平台属性分类：getCatalog3()
+     */
     @Autowired
     PmsBaseCatalog1Mapper pmsBaseCatalog1Mapper;
     @Autowired

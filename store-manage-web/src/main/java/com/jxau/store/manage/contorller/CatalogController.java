@@ -15,6 +15,11 @@ import java.util.List;
 @Controller
 @CrossOrigin
 public class CatalogController {
+    /**
+     * @author fjw
+     * 商品发布后台管理系统
+     *平台属性三级分类的查询
+     */
     @Reference
     CatalogService catalogService;
     @RequestMapping("getCatalog1")

@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @CrossOrigin
 public class SkuController {
-
+    /**
+     * @author fjw
+     * 商品发布后台管理系统
+     * sku：商品库存单元，商品库存单元管理
+     * fastdfs图片存储服务器，存储ip：192.168.174.140
+     */
     @Reference
     SkuService skuService;
 
