@@ -18,6 +18,17 @@ public class PmsProductSaleAttr implements Serializable {
     @Column
     String saleAttrId;
 
+    @Override
+    public String toString() {
+        return "PmsProductSaleAttr{" +
+                "id='" + id + '\'' +
+                ", productId='" + productId + '\'' +
+                ", saleAttrId='" + saleAttrId + '\'' +
+                ", saleAttrName='" + saleAttrName + '\'' +
+                ", spuSaleAttrValueList=" + spuSaleAttrValueList +
+                '}';
+    }
+
     @Column
     String saleAttrName;
 

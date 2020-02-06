@@ -43,10 +43,14 @@ public class SpuServiceImpl implements SpuService {
 
     @Override
     public void saveSpuInfo(PmsProductInfo pmsProductInfo) {
+
+
         // 保存商品信息
         pmsProductInfoMapper.insertSelective(pmsProductInfo);
         // 生成商品主键
         String productId = pmsProductInfo.getId();
+        //        // 保存商品图片信息
+
         //保存商品图片信息
         List<PmsProductImage> pmsProductImages = pmsProductInfo.getSpuImageList();
         for (PmsProductImage pmsProductImage : pmsProductImages
@@ -54,6 +58,7 @@ public class SpuServiceImpl implements SpuService {
             pmsProductImage.setProductId(productId);
             pmsProductImageMapper.insertSelective(pmsProductImage);
         }
+
         //保存商品属性信息
         List<PmsProductSaleAttr> pmsProductSaleAttrs = pmsProductInfo.getSpuSaleAttrList();
         for (PmsProductSaleAttr pmsProductSaleAttr : pmsProductSaleAttrs
@@ -65,7 +70,7 @@ public class SpuServiceImpl implements SpuService {
             for (PmsProductSaleAttrValue pmsProductSaleAttrValue : pmsProductSaleAttrValues
             ) {
                 pmsProductSaleAttrValue.setProductId(productId);
-                pmsProductSaleAttrMapper.insertSelective(pmsProductSaleAttr);
+                pmsProductSaleAttrValueMapper.insertSelective(pmsProductSaleAttrValue);
             }
 
 
@@ -74,14 +79,14 @@ public class SpuServiceImpl implements SpuService {
 
     @Override
     public List<PmsProductSaleAttr> spuSaleAttrList(String spuId) {
-        PmsProductSaleAttr pmsProductSaleAttr=new PmsProductSaleAttr();
+        PmsProductSaleAttr pmsProductSaleAttr = new PmsProductSaleAttr();
         pmsProductSaleAttr.setProductId(spuId);
-        List<PmsProductSaleAttr> pmsProductSaleAttrList=pmsProductSaleAttrMapper.select(pmsProductSaleAttr);
-        for (PmsProductSaleAttr pmsProductSaleAttr1:pmsProductSaleAttrList) {
-            PmsProductSaleAttrValue pmsProductSaleAttrValue=new PmsProductSaleAttrValue();
+        List<PmsProductSaleAttr> pmsProductSaleAttrList = pmsProductSaleAttrMapper.select(pmsProductSaleAttr);
+        for (PmsProductSaleAttr pmsProductSaleAttr1 : pmsProductSaleAttrList) {
+            PmsProductSaleAttrValue pmsProductSaleAttrValue = new PmsProductSaleAttrValue();
             pmsProductSaleAttrValue.setProductId(spuId);
             pmsProductSaleAttrValue.setSaleAttrId(pmsProductSaleAttr1.getSaleAttrId());// 销售属性id用的是系统的字典表中id，不是销售属性表的主键
-            List<PmsProductSaleAttrValue> pmsProductSaleAttrValues=pmsProductSaleAttrValueMapper.select(pmsProductSaleAttrValue);
+            List<PmsProductSaleAttrValue> pmsProductSaleAttrValues = pmsProductSaleAttrValueMapper.select(pmsProductSaleAttrValue);
             pmsProductSaleAttr1.setSpuSaleAttrValueList(pmsProductSaleAttrValues);
         }
         return pmsProductSaleAttrList;
@@ -94,5 +99,15 @@ public class SpuServiceImpl implements SpuService {
         List<PmsProductImage> pmsProductImages = pmsProductImageMapper.select(pmsProductImage);
 
         return pmsProductImages;
+    }
+
+    @Override
+    public List<PmsProductSaleAttr> spuSaleAttrListCheckBySku(String productId, String skuId) {
+
+        /**
+         * 代码优化
+         */
+        List<PmsProductSaleAttr> pmsProductSaleAttrs = pmsProductSaleAttrMapper.selectspuSaleAttrListCheckBySku(productId, skuId);
+        return pmsProductSaleAttrs;
     }
 }

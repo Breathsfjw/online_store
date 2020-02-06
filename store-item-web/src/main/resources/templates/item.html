@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="/scss/header.css" />
 		<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css"/>
 	</head>
-	<body>controller
+	<body>
 		<div id="max">
 		<header>
 		<input type = "text" th:value="${skuSaleAttrHashJsonStr}" id="valuesSku"/>
@@ -220,48 +220,48 @@
  
 							</ul>
 						</div>
-						  
-						<div class="box-attr-3">
-						<br/>
-							<div class="box-attr-2 clear"  th:each="spuSaleAttr:${spuSaleAttrListCheckBySku}">
-								<dl>
-									<dt th:text="${spuSaleAttr.saleAttrName}">选择颜色</dt>
-									<dd  th:class="(${saleAttrValue.isChecked}=='1'?'redborder':'')" th:each="saleAttrValue:${spuSaleAttr.spuSaleAttrValueList}">
-										<div th:value="${saleAttrValue.id}" th:text="${saleAttrValue.saleAttrValueName}">
-											  摩卡金
-										</div>
-									</dd>
-								</dl>
-							</div>
-<!--							<div class="box-attr-2 clear">
-								<dl>
-									<dt>选择版本</dt>
-									<dd>
-										<a href="#">标准版</a>
-									</dd>
-									<dd>
-										<a href="#">套装版</a>
-									</dd>
-								</dl>
-							</div>
 
-							<div class="box-attr-2 clear">
-								<dl>
-									<dt>选择内存</dt>
-									<dd>
-										<a href="#">64GB</a>
-									</dd>
-									<dd>
-										<a href="#">128GB</a>
-									</dd>
-								</dl>
-							</div>-->
-							<br/>
-						</div>
+                        <div class="box-attr-3">
+                            <br/>
+                            <div class="box-attr-2 clear"  th:each="spuSaleAttr:${spuSaleAttrListCheckBySku}">
+                                <dl>
+                                    <dt th:text="${spuSaleAttr.saleAttrName}">选择颜色</dt>
+                                    <dd  th:class="(${saleAttrValue.isChecked}=='1'?'redborder':'')" th:each="saleAttrValue:${spuSaleAttr.spuSaleAttrValueList}">
+                                        <div th:value="${saleAttrValue.id}" th:text="${saleAttrValue.saleAttrValueName}">
+                                            摩卡金
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <!--							<div class="box-attr-2 clear">
+                                                            <dl>
+                                                                <dt>选择版本</dt>
+                                                                <dd>
+                                                                    <a href="#">标准版</a>
+                                                                </dd>
+                                                                <dd>
+                                                                    <a href="#">套装版</a>
+                                                                </dd>
+                                                            </dl>
+                                                        </div>
+
+                                                        <div class="box-attr-2 clear">
+                                                            <dl>
+                                                                <dt>选择内存</dt>
+                                                                <dd>
+                                                                    <a href="#">64GB</a>
+                                                                </dd>
+                                                                <dd>
+                                                                    <a href="#">128GB</a>
+                                                                </dd>
+                                                            </dl>
+                                                        </div>-->
+                            <br/>
+                        </div>
 
 						<div class="box-btns clear">
 							<div class="box-btns-one">
-								<form id="itemForm" action="http://cart.gmall.com:8087/addToCart" method="post">
+								<form id="itemForm" action="http://cart.gmall.com:8084/addToCart" method="post">
 									<input type="text" name="num" id=""  value="1"/>
 									<input type="hidden" name="skuId"  th:value="${skuInfo?.id}" />
 
@@ -1029,8 +1029,10 @@
 			});
             var kuSaleAttrValueJson = JSON.parse(skuSaleAttrValueJsonStr);
             var v_skuId = kuSaleAttrValueJson[k];
+            alert(v_skuId);
+
 			if(v_skuId){
-                window.location.href = "http://item.gmall.com:8082/"+v_skuId+".html";
+                window.location.href = "http://item.jxau.com:8082/"+v_skuId+".html";
 			}
 
         }
