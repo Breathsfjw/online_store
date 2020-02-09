@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Store_fjw1.0.iml" filepath="$PROJECT_DIR$/.idea/Store_fjw1.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo_01/demo_01.iml" filepath="$PROJECT_DIR$/demo_01/demo_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastdfs-client-java/fastdfs-client-java.iml" filepath="$PROJECT_DIR$/fastdfs-client-java/fastdfs-client-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-api/store-api.iml" filepath="$PROJECT_DIR$/store-api/store-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-common-util/store-common-util.iml" filepath="$PROJECT_DIR$/store-common-util/store-common-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-item-web/store-item-web.iml" filepath="$PROJECT_DIR$/store-item-web/store-item-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-manage-service/store-manage-service.iml" filepath="$PROJECT_DIR$/store-manage-service/store-manage-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-manage-web/store-manage-web.iml" filepath="$PROJECT_DIR$/store-manage-web/store-manage-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-parent/store-parent.iml" filepath="$PROJECT_DIR$/store-parent/store-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-redisson-test/store-redisson-test.iml" filepath="$PROJECT_DIR$/store-redisson-test/store-redisson-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-search-service/store-search-service.iml" filepath="$PROJECT_DIR$/store-search-service/store-search-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-search-web/store-search-web.iml" filepath="$PROJECT_DIR$/store-search-web/store-search-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-service-util/store-service-util.iml" filepath="$PROJECT_DIR$/store-service-util/store-service-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store_fjw-user/store-user.iml" filepath="$PROJECT_DIR$/store_fjw-user/store-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-user-service/store-user-service.iml" filepath="$PROJECT_DIR$/store-user-service/store-user-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-user-web/store-user-web.iml" filepath="$PROJECT_DIR$/store-user-web/store-user-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store-web-util/store-web-util.iml" filepath="$PROJECT_DIR$/store-web-util/store-web-util.iml" />
+    </modules>
+  </component>
+</project>

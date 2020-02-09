@@ -20,7 +20,7 @@ public class RedissonController {
     @Autowired
     RedissonClient redissonClient;
 
-    @RequestMapping("testRedisson")
+    @RequestMapping("redisTest")
     @ResponseBody
     public String testRedisson(){
         Jedis jedis = redisUtil.getJedis();

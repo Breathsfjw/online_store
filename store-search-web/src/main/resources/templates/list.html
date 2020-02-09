@@ -203,7 +203,9 @@
                             </p>
 
                             <p class="tab_R">
-                                <span th:text="'￥'+${#numbers.formatDecimal(skuLsInfo.price,1,2)}">¥5199.00</span>
+<!--                                <span th:text="'￥'+${#numbers.formatDecimal(skuLsInfo.price,1,2)}">¥5199.00</span>-->
+<!--                                <span th:text="'￥'+${#numbers.formatDecimal(skuLsInfo.price,1,2)}">¥5199.00</span>-->
+                                <span th:text="'￥'+${skuLsInfo.price}">¥5199.00</span>
                             </p>
 
                                 <a href="#" title=""   th:onclick="'javascript:item(\''+${skuLsInfo.id}+'\')'" class="tab_JE" th:utext="${skuLsInfo.skuName}" >
@@ -401,7 +403,7 @@
 <script language="JavaScript">
     function item(skuid) {
         console.log("skuid:"+skuid);
-        window.location.href="http://item.gmall.com:8084/"+skuid+".html";
+        window.location.href="http://item.store.com:8083/"+skuid+".html";
     }
 
     function searchList(){
@@ -455,7 +457,7 @@
         $(this).css({display:"none"})
     });
     //显示隐藏
-    var $li = $(".GM_nav_logo>div:gt(3)").hide();
+    var $li = $(".GM_nav_logo>div:gt(3)").show();
       $('.GM_show span').click(function(){
           if($li.is(':hidden')){
               $li.show();

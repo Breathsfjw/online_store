@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demo_01" />
+        <module name="store-web-util" />
+        <module name="store-redisson-test" />
+        <module name="store-service-util" />
+        <module name="store-item-web" />
+        <module name="store-user-web" />
+        <module name="fastdfs-client-java" />
+        <module name="store-common-util" />
+        <module name="store-manage-web" />
+        <module name="store-manage-service" />
+        <module name="store-user" />
+        <module name="store-search-service" />
+        <module name="store-api" />
+        <module name="store-search-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="demo_01" target="1.8" />
+      <module name="fastdfs-client-java" target="1.6" />
+      <module name="store-api" target="1.8" />
+      <module name="store-common-util" target="1.8" />
+      <module name="store-item-web" target="1.8" />
+      <module name="store-manage-service" target="1.8" />
+      <module name="store-manage-web" target="1.8" />
+      <module name="store-parent" target="1.8" />
+      <module name="store-redisson-test" target="1.8" />
+      <module name="store-search-service" target="1.8" />
+      <module name="store-search-web" target="1.8" />
+      <module name="store-service-util" target="1.8" />
+      <module name="store-user" target="1.8" />
+      <module name="store-user-service" target="1.8" />
+      <module name="store-user-web" target="1.8" />
+      <module name="store-web-util" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="demo_01" options="-parameters" />
+      <module name="store-item-web" options="" />
+      <module name="store-redisson-test" options="" />
+      <module name="store-search-service" options="" />
+      <module name="store-search-web" options="" />
+    </option>
+  </component>
+</project>
