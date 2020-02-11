@@ -8,5 +8,5 @@ import java.util.List;
 import java.util.Set;
 
 public interface PmsBaseAttrInfoMapper extends Mapper<PmsBaseAttrInfo> {
-     List<PmsBaseAttrInfo> selectAttrValueListByValueId(@Param("valueSetStr") String valueSet) ;
+     List<PmsBaseAttrInfo> selectAttrValueListByValueId(@Param("valueSetStr") String valueSetStr);
 }

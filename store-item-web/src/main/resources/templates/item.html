@@ -261,8 +261,8 @@
 
 						<div class="box-btns clear">
 							<div class="box-btns-one">
-								<form id="itemForm" action="http://cart.gmall.com:8084/addToCart" method="post">
-									<input type="text" name="num" id=""  value="1"/>
+								<form id="itemForm" action="http://cart.store.com:8084/addToCart" method="post">
+									<input type="text" name="quantity" id=""  value="1"/>
 									<input type="hidden" name="skuId"  th:value="${skuInfo?.id}" />
 
 									<div class="box-btns-one1">
@@ -1032,7 +1032,7 @@
             alert(v_skuId);
 
 			if(v_skuId){
-                window.location.href = "http://item.jxau.com:8082/"+v_skuId+".html";
+                window.location.href = "http://item.store.com:8082/"+v_skuId+".html";
 			}
 
         }

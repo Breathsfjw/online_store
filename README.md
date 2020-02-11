@@ -15,7 +15,7 @@
      
      
     store-item-web前台的商品详情展示 8082
-    store-item-service前台的商品详情服务 8072
+    ###store-item-service前台的商品详情服务 8072服务未构建
      
      
     store-search-web服务端口8083

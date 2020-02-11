@@ -66,12 +66,22 @@
 <br/>
 <div class="GM_ipone">
     <div class="GM_ipone_bar">
+<!--        <div class="GM_ipone_one a">-->
+<!--            筛选条件-->
+<!--        </div>-->
+<!--        <i><img src="/list/image/right-@1x.png" alt=""></i>-->
+<!--        <span th:if="${keyword}!=null" th:text="'&quot;'+${keyword}+'&quot;'">&quot;小米&quot;</span>-->
+<!--        <a class="select-attr"   th:each="baseAttrValueSelected:${attrValueSelectedList}"    th:href="'list.html?'+${baseAttrValueSelected.urlParam}"   th:utext=" ${baseAttrValueSelected.valueName} +'<b> ✖ </b>'"  > 2G<b> ✖ </b>-->
+<!--        </a>-->
+<!--        &lt;!&ndash; <a class="select-attr"   href="#"      > 屏幕尺寸:5.1-5.5英寸<b> ✖ </b>-->
+<!--        </a>&ndash;&gt;-->
         <div class="GM_ipone_one a">
             筛选条件
         </div>
         <i><img src="/list/image/right-@1x.png" alt=""></i>
         <span th:if="${keyword}!=null" th:text="'&quot;'+${keyword}+'&quot;'">&quot;小米&quot;</span>
-        <a class="select-attr"   th:each="baseAttrValueSelected:${attrValueSelectedList}"    th:href="'list.html?'+${baseAttrValueSelected.urlParam}"   th:utext=" ${baseAttrValueSelected.valueName} +'<b> ✖ </b>'"  > 2G<b> ✖ </b>
+        <a class="select-attr"   th:each="baseAttrValueSelected:${attrValueSelectedList}"    th:href="'list.html?'+${baseAttrValueSelected.urlParam}"   th:utext=" ${baseAttrValueSelected.valueName} +'<b> ✖ </b>'"  >
+            2G<b> ✖ </b>
         </a>
         <!-- <a class="select-attr"   href="#"      > 屏幕尺寸:5.1-5.5英寸<b> ✖ </b>
         </a>-->
@@ -403,7 +413,7 @@
 <script language="JavaScript">
     function item(skuid) {
         console.log("skuid:"+skuid);
-        window.location.href="http://item.store.com:8083/"+skuid+".html";
+        window.location.href="http://item.store.com:8082/"+skuid+".html";
     }
 
     function searchList(){
