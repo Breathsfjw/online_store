@@ -1,6 +1,7 @@
 package com.jxau.store.search.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.jxau.store.annotations.LoginRequired;
 import com.jxau.store.beans.*;
 import com.jxau.store.service.AttrService;
 import com.jxau.store.service.SearchService;
@@ -19,6 +20,7 @@ public class SearchController {
     AttrService attrService;
 
     @RequestMapping("index")
+    @LoginRequired(loginSuccess = false)
     public String index() {
         return "index";
     }

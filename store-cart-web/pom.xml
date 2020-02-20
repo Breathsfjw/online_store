@@ -6,7 +6,7 @@
         <groupId>com.jxau.store</groupId>
         <artifactId>store-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
+<!--        <relativePath/>../pom.xml</relativePath> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
     </parent>
     <groupId>com.jxau.strore</groupId>
     <artifactId>store-cart-web</artifactId>
