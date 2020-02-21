@@ -55,7 +55,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                     ip = "127.0.0.1";
                 }
             }
-            String successJson  = HttpclientUtil.doGet("http://passport.gmall.com:8085/verify?token=" + token+"&currentIp="+ip);
+            String successJson  = HttpclientUtil.doGet("http://passport.store.com:8085/verify?token=" + token+"&currentIp="+ip);
 
             successMap = JSON.parseObject(successJson,Map.class);
 
@@ -66,9 +66,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if (loginSuccess) {
             // 必须登录成功才能使用
             if (!success.equals("success")) {
-                //重定向会passport登录
+                //重定向回passport登录
                 StringBuffer requestURL = request.getRequestURL();
-                response.sendRedirect("http://passport.gmall.com:8085/index?ReturnUrl="+requestURL);
+                response.sendRedirect("http://passport.store.com:8085/index?ReturnUrl="+requestURL);
                 return false;
             }
 
