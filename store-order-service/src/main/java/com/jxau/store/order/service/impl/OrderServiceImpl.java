@@ -80,4 +80,11 @@ public class OrderServiceImpl implements OrderService {
             cartService.delCart(productSkuId);
         }
     }
+
+    @Override
+    public OmsOrder getOrderByOrderSn(String outTradeNo) {
+        OmsOrder omsOrder = new OmsOrder();
+        omsOrder.setOrderSn(outTradeNo);
+        return omsOrderMapper.selectOne(omsOrder);
+    }
 }

@@ -46,6 +46,9 @@ public class OrderController {
         if (memberId == null) {
             memberId = "1";
         }
+        if (nickname == null) {
+            memberId = "test";
+        }
         List<UmsMemberReceiveAddress> umsMemberReceiveAddress = userService.getUmsMemberReceiveAddress(memberId);
         List<OmsCartItem> cartList = cartService.getCartList(memberId);
         List<OmsOrderItem> omsOrderItemList = new ArrayList<>();
