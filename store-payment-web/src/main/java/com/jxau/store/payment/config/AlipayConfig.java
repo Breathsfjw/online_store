@@ -11,8 +11,9 @@ import org.springframework.context.annotation.PropertySource;
  * @param
  * @return
  */
-@Configuration
+
 @PropertySource("classpath:alipay.properties")
+@Configuration
 public class AlipayConfig {
     @Value("${alipay_url}")
     private String alipay_url;

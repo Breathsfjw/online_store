@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
         Jedis jedis = null;
         try {
             jedis = redisUtil.getJedis();
-            jedis.setex("user" + memberId + "token", 60 * 60 * 24, token);
+            jedis.setex("user:" + memberId + ":token", 60 * 60 * 24, token);
         } finally {
             jedis.close();
         }

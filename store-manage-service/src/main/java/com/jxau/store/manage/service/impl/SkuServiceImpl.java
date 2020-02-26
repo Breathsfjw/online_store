@@ -10,12 +10,16 @@ import com.jxau.store.manage.mapper.PmsSkuAttrValueMapper;
 import com.jxau.store.manage.mapper.PmsSkuImageMapper;
 import com.jxau.store.manage.mapper.PmsSkuInfoMapper;
 import com.jxau.store.manage.mapper.PmsSkuSaleAttrValueMapper;
+import com.jxau.store.mq.ActiveMQUtil;
 import com.jxau.store.service.SkuService;
 import com.jxau.store.util.RedisUtil;
+import org.apache.activemq.command.ActiveMQMapMessage;
+import org.apache.activemq.command.ActiveMQTextMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.Jedis;
 
+import javax.jms.*;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
@@ -42,37 +46,77 @@ public class SkuServiceImpl implements SkuService {
     PmsSkuImageMapper pmsSkuImageMapper;
     @Autowired
     RedisUtil redisUtil;
+    @Autowired
+    ActiveMQUtil activeMQUtil;
 
     //保存商品存储单元的信息
     @Override
     public void saveSkuInfo(PmsSkuInfo pmsSkuInfo) {
 
-        // 插入skuInfo
-        int i = pmsSkuInfoMapper.insertSelective(pmsSkuInfo);
-        String skuId = pmsSkuInfo.getId();
 
-        // 插入平台属性关联
-        List<PmsSkuAttrValue> skuAttrValueList = pmsSkuInfo.getSkuAttrValueList();
-        for (PmsSkuAttrValue pmsSkuAttrValue : skuAttrValueList) {
-            pmsSkuAttrValue.setSkuId(skuId);
-            pmsSkuAttrValueMapper.insertSelective(pmsSkuAttrValue);
+
+        ConnectionFactory connectionFactory = null;
+        Connection connection = null;
+        Session session = null;
+        try {
+            connectionFactory = activeMQUtil.getConnectionFactory();
+            connection = connectionFactory.createConnection();
+            session = connection.createSession(true, Session.SESSION_TRANSACTED);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        try {
+            // 插入skuInfo
+            int i = pmsSkuInfoMapper.insertSelective(pmsSkuInfo);
+            String skuId = pmsSkuInfo.getId();
 
-        // 插入销售属性关联
-        List<PmsSkuSaleAttrValue> skuSaleAttrValueList = pmsSkuInfo.getSkuSaleAttrValueList();
-        for (PmsSkuSaleAttrValue pmsSkuSaleAttrValue : skuSaleAttrValueList) {
-            pmsSkuSaleAttrValue.setSkuId(skuId);
-            pmsSkuSaleAttrValueMapper.insertSelective(pmsSkuSaleAttrValue);
+            // 插入平台属性关联
+            List<PmsSkuAttrValue> skuAttrValueList = pmsSkuInfo.getSkuAttrValueList();
+            for (PmsSkuAttrValue pmsSkuAttrValue : skuAttrValueList) {
+                pmsSkuAttrValue.setSkuId(skuId);
+                pmsSkuAttrValueMapper.insertSelective(pmsSkuAttrValue);
+            }
+
+            // 插入销售属性关联
+            List<PmsSkuSaleAttrValue> skuSaleAttrValueList = pmsSkuInfo.getSkuSaleAttrValueList();
+            for (PmsSkuSaleAttrValue pmsSkuSaleAttrValue : skuSaleAttrValueList) {
+                pmsSkuSaleAttrValue.setSkuId(skuId);
+                pmsSkuSaleAttrValueMapper.insertSelective(pmsSkuSaleAttrValue);
+            }
+
+            // 插入图片信息
+            List<PmsSkuImage> skuImageList = pmsSkuInfo.getSkuImageList();
+            for (PmsSkuImage pmsSkuImage : skuImageList) {
+                pmsSkuImage.setSkuId(skuId);
+                pmsSkuImageMapper.insertSelective(pmsSkuImage);
+            }
+            // 修改完商品sku信息，将修改后的信息通过消息队列同步到elastic
+            // 调用mq发送sku商品信息修改的消息
+            Queue pmsskuinfo_uppdate_queue = session.createQueue("PMSSKUINFO_UPPDATE_QUEUE");
+            MessageProducer producer = session.createProducer(pmsskuinfo_uppdate_queue);
+            TextMessage textMessage = new ActiveMQTextMessage();//字符串文本
+            //MapMessage mapMessage = new ActiveMQMapMessage();// hash结构
+
+            // 将sku商品对象，转化成json字符串，存入ORDER_PAY_QUEUE的消息队列
+            textMessage.setText(JSON.toJSONString(pmsSkuInfo));
+            producer.send(textMessage);
+            session.commit();
+
+        } catch (JMSException e) {
+            e.printStackTrace();
+            // 消息回滚
+            try {
+                session.rollback();
+            } catch (JMSException ex) {
+                ex.printStackTrace();
+            }
+        } finally {
+            try {
+                connection.close();
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
         }
-
-        // 插入图片信息
-        List<PmsSkuImage> skuImageList = pmsSkuInfo.getSkuImageList();
-        for (PmsSkuImage pmsSkuImage : skuImageList) {
-            pmsSkuImage.setSkuId(skuId);
-            pmsSkuImageMapper.insertSelective(pmsSkuImage);
-        }
-
-
     }
 
     @Override

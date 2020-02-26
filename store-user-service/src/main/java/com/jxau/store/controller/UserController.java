@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Controller
 public class UserController {
     @Autowired

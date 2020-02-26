@@ -90,6 +90,7 @@ public class PaymentController {
         paymentInfo.setSubject("易达商城感光徕卡Pro300瞎命名系列手机");
         paymentInfo.setTotalAmount(totalAmount);
         paymentService.save(paymentInfo);
+        paymentService.sendDelayPaymentResultCheckQueue(outTradeNo,5);
         return form;
     }
 
@@ -114,7 +115,7 @@ public class PaymentController {
             paymentService.updatePayment(paymentInfo);
 
         }
-        return "finish";
+        return "redirect:http://order.store.com:8086/list?memberId=1";
     }
 
 }

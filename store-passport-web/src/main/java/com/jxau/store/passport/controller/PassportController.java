@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import com.jxau.store.beans.UmsMember;
 import com.jxau.store.service.UserService;
+import com.jxau.store.util.CookieUtil;
 import com.jxau.store.util.HttpclientUtil;
 import com.jxau.store.util.JwtUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +25,7 @@ public class PassportController {
     UserService userService;
 
     @RequestMapping("vlogin")
-    public String vlogin(String code, HttpServletRequest request) {
+    public String vlogin(String code, HttpServletRequest request, HttpServletResponse response) {
         String token="";
         Map<String, String> accessMap = getAccess_token(code);
         String uid = accessMap.get("uid");
@@ -54,7 +56,13 @@ public class PassportController {
             umsMember=umsMember1;
         }
         token = getString(request, umsMember);
-
+        // 将token存入redis一份
+        String memberId = umsMember.getId();
+        request.setAttribute("memberId", umsMember.getId());
+        request.setAttribute("nickname", umsMember.getNickname());
+        if(StringUtils.isNotBlank(token)){
+            CookieUtil.setCookie(request,response,"oldToken",token,60*60*2,true);
+        }
         return "redirect:http://search.store.com:8083/index?token="+token;
     }
 
@@ -89,9 +97,9 @@ public class PassportController {
         if (objectMap != null) {
             map.put("memberId", (String) objectMap.get("memberId"));
             map.put("nickname", (String) objectMap.get("nickname"));
-            map.put("staues", "success");
+            map.put("status", "success");
         } else {
-            map.put("staues", "fail");
+            map.put("status", "fail");
         }
         return JSON.toJSONString(map);
     }
@@ -99,7 +107,7 @@ public class PassportController {
 
     @RequestMapping("login")
     @ResponseBody
-    public String login(UmsMember umsMember, HttpServletRequest request) {
+    public String login(UmsMember umsMember, HttpServletRequest request,HttpServletResponse response) {
 
         String token = "";
         // 调用用户服务验证用户名和密码
@@ -109,6 +117,11 @@ public class PassportController {
             token = getString(request, umsMemberLogin);
 
 
+        }
+        request.setAttribute("memberId", umsMemberLogin.getId());
+        request.setAttribute("nickname", umsMemberLogin.getNickname());
+        if(StringUtils.isNotBlank(token)){
+            CookieUtil.setCookie(request,response,"oldToken",token,60*60*2,true);
         }
         return token;
     }

@@ -4,8 +4,10 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.jxau.store.beans.PmsSearchParam;
 import com.jxau.store.beans.PmsSearchSkuInfo;
 import com.jxau.store.beans.PmsSkuAttrValue;
+import com.jxau.store.beans.PmsSkuInfo;
 import com.jxau.store.service.SearchService;
 import io.searchbox.client.JestClient;
+import io.searchbox.core.Index;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 import org.apache.commons.lang3.StringUtils;
@@ -15,6 +17,7 @@ import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -204,6 +207,19 @@ public List<PmsSearchSkuInfo> list(PmsSearchParam pmsSearchParam) {
 //    System.out.println(pmsSearchSkuInfos.size());
     return pmsSearchSkuInfos;
 }
+
+    @Override
+    public void updateElastic(PmsSkuInfo pmsSkuInfo) {
+        PmsSearchSkuInfo pmsSearchSkuInfo = new PmsSearchSkuInfo();
+        BeanUtils.copyProperties(pmsSkuInfo, pmsSearchSkuInfo);
+        pmsSearchSkuInfo.setId(Long.parseLong(pmsSkuInfo.getId()));
+        Index builder = new Index.Builder(pmsSearchSkuInfo).index("store").type("PmsSkuInfo").id(pmsSearchSkuInfo.getId() + "").build();
+        try {
+            jestClient.execute(builder);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private String getSearchDsl(PmsSearchParam pmsSearchParam) {
 
